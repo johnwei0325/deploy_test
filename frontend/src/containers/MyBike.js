@@ -174,7 +174,7 @@ function MyBike () {
             </Collapse> : <></>}
         </Box> 
         
-        <Card sx={{ maxWidth: `calc(0.8*vw)`/*`calc(0.8*vw)`*/ ,  width: window.innerWidth > 410 ? "100%" : "95%", height: window.innerWidth > 410 ? "100%" : "92%"}}>
+        <Card sx={{ maxWidth: `calc(0.8*vw)`/*`calc(0.8*vw)`*/ ,  width: window.innerWidth > 410 ? "100%" : "95%", height: window.innerWidth > 410 ? "100%" : "92%", padding: "0px"}}>
             <CardContent>
                 <Typography gutterBottom variant="h4" component="div" fontSize={window.innerWidth > 410 ? "50px" : "20px"}>
                     {username}'s Bike

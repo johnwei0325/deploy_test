@@ -309,10 +309,10 @@ function Map () {
             flexDirection='column'
             alignItems='center'
             top="8%"
-            left="8%"
+            left="0%"
             right="8%"
             h='80vh'
-            w='80vw'
+            w='95vw'
             // h='100vh'
             // w='100vw'
           > 

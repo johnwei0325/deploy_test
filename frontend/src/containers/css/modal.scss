@@ -39,7 +39,7 @@ body {
   &-container {
     display: flex;
     flex-direction: column;
-    max-width: 350px;
+    max-width: 300px;
     width: 50%;
     height: 75%;
     border-radius: 10px;
@@ -281,7 +281,7 @@ body {
 
 @media(max-width: 600px) {
   .modal-container {
-    top: 10%;
+    top: 15%;
     left: 11%;
     width: 65%;
     height: 60%;
