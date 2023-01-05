@@ -1,6 +1,6 @@
 import StationsData from '../stations.json' assert {type: "json"}
 import Station from './models/station.js'
-import MyBike from "./models/myBike.js"
+import MyBike from "./models/myBike.js" 
 
 const saveStation = async (label, dist, density,pics, lat, lng ) => {
     const existing = await Station.findOne({ label });
