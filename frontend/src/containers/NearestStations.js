@@ -44,7 +44,7 @@ const NearestStations = () => {
   const [spot, setSpot] = useState({lat: "", lng: "", time: ""})
   const [time_dis, setTime_Dis] = useState({dis: "", dur: ""})
   const device=useRWD();
-
+  const [username] = useOutletContext();
   React.useEffect(() => {
     navigator.geolocation.getCurrentPosition((position)=> {
         setPosition({lat: position.coords.latitude, lng: position.coords.longitude, time: new Date()})
@@ -139,7 +139,24 @@ const NearestStations = () => {
   </>
     }
   }
-
+  const handleRideMyBike = async() => {
+    const {
+      data: { message, myBike },
+    } = await axios.post('/myBike', {
+        username, parked: false, time: new Date(),
+    });
+    console.log("Handle post my Bike")
+    // console.log(myBike, "Is it parked? " , !parked)
+    if(!myBike){
+        setErrorMessage("Database post my bike error!")
+    } else  {
+        setSuccessMessage("Successfully updated your bike status in database.")
+        setTimeout(function () {
+            setSuccessMessage("")
+        }, 5000);//5 Second delay 
+    }
+    //setAllStations(stations)
+}
   const [allStations, setAllStations] = useState([]);
 
   React.useEffect(()=>{
@@ -147,7 +164,7 @@ const NearestStations = () => {
   },[position])
 
     return (<>
-    <Box sx={{ width: '50%', position:"fixed", left: "50%", top:"12%", transform: "translate(-50%, 0)" }}>
+    <Box sx={{ width: window.innerWidth>410 ? '50%' : '80%', position:"fixed", left: window.innerWidth>410 ? "50%" : "58%", top:window.innerWidth>410 ? "12%" : "8%", transform: "translate(-50%, 0)" , zIndex: "3" }}>
       { errorMessage? <Collapse in={errorMessage}>
                 <Alert severity='error'
                 action={
@@ -165,7 +182,7 @@ const NearestStations = () => {
                 }
                 sx={{ mb: 2 }}
                 >
-                {errorMessage}
+                {errorMessage} &nbsp; &nbsp; <button className='btn-5' onClick={handleRideMyBike}>ride</button>
                 </Alert>
             </Collapse> : <></>}
             

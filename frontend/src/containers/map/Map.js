@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Button, Flex } from '@chakra-ui/react'
 import {
     useJsApiLoader,
     GoogleMap,
@@ -227,6 +227,25 @@ function Map () {
       
     }
 
+    const handleRideMyBike = async() => {
+      const {
+        data: { message, myBike },
+      } = await axios.post('/myBike', {
+          username, parked: false, time: new Date(),
+      });
+      console.log("Handle post my Bike")
+      // console.log(myBike, "Is it parked? " , !parked)
+      if(!myBike){
+          setErrorMessage("Database post my bike error!")
+      } else  {
+          setSuccessMessage("Successfully updated your bike status in database.")
+          setTimeout(function () {
+              setSuccessMessage("")
+          }, 5000);//5 Second delay 
+      }
+      //setAllStations(stations)
+  }
+
     const densityToColor = (density) => {
       if(density === 1) return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
       else if(density === 2) return 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
@@ -242,7 +261,7 @@ function Map () {
       // return <SkeletonText />
     }
     return (<>
-        <Box sx={{ width: '50%', position:"fixed", left: "50%", top:"12%", transform: "translate(-50%, 0)" }}>
+        <Box sx={{ width: window.innerWidth>410 ? '50%' : '80%', position:"fixed", left: window.innerWidth>410 ? "50%" : "58%", top:window.innerWidth>410 ? "12%" : "8%", transform: "translate(-50%, 0)" , zIndex: "3"}}>
       { errorMessage? <Collapse in={errorMessage}>
                 <Alert severity='error'
                 action={
@@ -260,7 +279,7 @@ function Map () {
                 }
                 sx={{ mb: 2 }}
                 >
-                {errorMessage}
+                {errorMessage} &nbsp; &nbsp; <button className='btn-5' onClick={handleRideMyBike}>ride</button>
                 </Alert>
             </Collapse> : <></>}
             
