@@ -337,7 +337,7 @@ function Map () {
                   fullscreenControl: false,
                 }}
                 onLoad={map => setMap(map)}
-                onRightClick={mapsMouseEvent=>{onMapClick(mapsMouseEvent)}}//右鍵時加入新marker
+                //右鍵時加入新marker
               >
                 <Marker title='現在位置' key={selected} position={selected} icon={{
                     url: "placeholder.png",
