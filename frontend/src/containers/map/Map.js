@@ -279,7 +279,7 @@ function Map () {
                 }
                 sx={{ mb: 2 }}
                 >
-                {errorMessage} &nbsp; &nbsp; <button className='btn-5' onClick={handleRideMyBike}>ride</button>
+                {errorMessage} &nbsp; &nbsp; {errorMessage==="You have already parked your bike" ? <button className='btn-5' onClick={handleRideMyBike}>ride</button> : null}
                 </Alert>
             </Collapse> : <></>}
             
